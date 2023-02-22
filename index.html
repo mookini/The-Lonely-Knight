@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.min.js" 
+     integrity="sha512-WJXVjqeINVpi5XXJ2jn0BSCfp0y80IKrYh731gLRnkAS9TKc5KNt/OfLtu+fCueqdWniouJ1ubM+VI/hbo7POQ==" 
+     crossorigin="anonymous" 
+     referrerpolicy="no-referrer">
+     </script>
+     <!-- Includes the p5.collide2D addon library -->
+     <script defer src="https://unpkg.com/p5.collide2d"></script>
+     <!-- refrence external javasript -->
+     <script src="script.js"></script>
+     <link href="style.css" rel="stylesheet" type="text/css" />  
+     <link href="https://fonts.cdnfonts.com/css/common-pixel" rel="stylesheet">
+     <style>
+            @import url('https://fonts.cdnfonts.com/css/common-pixel');
+    </style>
+                
+
+</head>
+<body>
+
+    <div id = "image_text"></div>
+    
+    <div id="box_text"><span id = "common_text">This is a common text. <br>Just a waste of space</span></div>
+
+<script>
+    
+    let w = window.innerWidth;
+    let h = window.innerHeight;
+    let moveX = w/24;
+    let moveY = h/1.2;
+    let x1;
+    let y1;
+    let size1;
+    let random_attack;
+function setup() {
+    
+    createCanvas(w,h);
+    console.log(w,",",h)
+
+    
+}
+
+
+function draw() {
+    clear()
+    console.log(moveX,",",moveY)
+    fill(color("blue"))
+    rect(1440, 381,100,100)
+    fill(color('red'))
+    rect(moveX,moveY,100,100)
+    
+    if (keyIsDown(65)) {
+        if (moveX > 0){
+            moveX = moveX -5;
+
+        }
+        
+    }
+    if (keyIsDown(68)){
+        if (moveX < 1820){
+            moveX = moveX +5;
+        }
+        
+
+    }
+    if (keyIsDown(83)){
+        if (moveY < 828){
+            moveY = moveY +5;
+        }
+
+    }
+    if (keyIsDown(87)){
+        if (moveY > 0){
+        
+            moveY = moveY -5;
+
+         
+        }
+
+    }
+}
+function ranattack(){
+    //Function that starts when their is a random attack
+}
+
+</script>
+  
+</body>
+</html>

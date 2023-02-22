@@ -1,0 +1,48 @@
+body{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-image: url(background.png);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: 0.02vh;
+    background-repeat: no-repeat;
+
+}
+#box_text{
+    position: absolute;
+    height: 20vh;
+    width: 30vw;
+    right: 67.6vw;
+    overflow-wrap: break-word;
+}
+#common_text{
+    font-size: 1.2vw;
+    color: black;
+    position: absolute;
+    top: 2.4vw;
+    font-family: 'Common Pixel', sans-serif;
+   
+ 
+    
+
+}
+#image_text{
+    background-image: url(text_box.jpeg);
+    object-fit: cover;
+    background-repeat: no-repeat;
+    width: 32.5vw;
+    height: 25vh;
+    position: absolute;
+    
+    
+
+}
+
+
+
+
+/*All animations*/
+
