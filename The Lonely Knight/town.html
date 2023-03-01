@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.min.js" 
+    integrity="sha512-WJXVjqeINVpi5XXJ2jn0BSCfp0y80IKrYh731gLRnkAS9TKc5KNt/OfLtu+fCueqdWniouJ1ubM+VI/hbo7POQ==" 
+    crossorigin="anonymous" 
+    referrerpolicy="no-referrer">
+    </script>
+    <!-- Includes the p5.collide2D addon library -->
+    <script defer src="https://unpkg.com/p5.collide2d"></script>
+    <!-- refrence external javasript -->
+    <script src="script.js"></script>
+    <link href="style.css" rel="stylesheet" type="text/css" />  
+    <link href="https://fonts.cdnfonts.com/css/common-pixel" rel="stylesheet">
+    <style>
+           @import url('https://fonts.cdnfonts.com/css/common-pixel');
+   </style>
+    
+</head>
+<body id="body2">
+
+<script>
+    let w = window.innerWidth;
+    let h = window.innerHeight;
+    let moveX = 120
+    let moveY = 266
+    let stuck = false;
+    //Hit variabls
+    let gobacktoforest;
+    let once = 1;
+    goback = true;
+    ///////
+    function setup() {
+        
+        createCanvas(w,h);
+        
+
+        
+    }
+    function draw(){
+        clear()
+        console.log(goback)
+        noStroke()
+        fill(color(0,0,0,0.2))
+        fill("purple")
+        rect(0,96,100,400)
+        fill(color('red'))
+        rect(moveX,moveY,100,100)
+        
+        if (keyIsDown(65)) {
+        if ((moveX > 0)&&(stuck === false)){
+            moveX = moveX -5;
+
+        }
+        
+        }
+        if (keyIsDown(68)){
+            if ((moveX < 1820)&&(stuck === false)){
+                moveX = moveX +5;
+            }
+            
+
+        }
+        if (keyIsDown(83)){
+            if ((moveY < 828)&&(stuck === false)){
+                moveY = moveY +5;
+            }
+
+        }
+        if (keyIsDown(87)){
+        if ((moveY > 0)&&(stuck === false)){
+        
+            moveY = moveY -5;
+
+         
+        }
+    
+    }
+    gobacktoforest = collideRectRect(moveX,moveY,100,100,0,96,100,400)
+    if (gobacktoforest === true){
+        if (once == 1){
+            goback = true
+            sessionStorage.setItem("gobackkey",goback)
+            window.location.href = "index.html"
+            once +=1
+            
+            
+
+        }
+    }
+
+}
+
+
+
+
+</script>
+    
+    
+</body>
+</html>

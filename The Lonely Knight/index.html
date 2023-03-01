@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.min.js" 
+     integrity="sha512-WJXVjqeINVpi5XXJ2jn0BSCfp0y80IKrYh731gLRnkAS9TKc5KNt/OfLtu+fCueqdWniouJ1ubM+VI/hbo7POQ==" 
+     crossorigin="anonymous" 
+     referrerpolicy="no-referrer">
+     </script>
+     <!-- Includes the p5.collide2D addon library -->
+     <script defer src="https://unpkg.com/p5.collide2d"></script>
+     <!-- refrence external javasript -->
+     <script src="script.js"></script>
+     <link href="style.css" rel="stylesheet" type="text/css" />  
+     <link href="https://fonts.cdnfonts.com/css/common-pixel" rel="stylesheet">
+     <style>
+            @import url('https://fonts.cdnfonts.com/css/common-pixel');
+    </style>
+                
+
+</head>
+<body id="body1">
+
+    <div id = "image_text"></div>
+    
+    
+    <div id="box_text"><span id = "common_text">This is a common text. <br>Just a waste of space</span></div>
+
+<script>
+    
+    let w = window.innerWidth;
+    let h = window.innerHeight;
+    let moveX = w/24;
+    let moveY = h/1.2;
+    let x1;
+    let y1;
+    let size1;
+    let random_attack;
+    let stuck = false;
+    let gototown = false
+    ///For multiple text boxes
+    let countcheck = -1;
+    let isPressed = false;
+    ///Hit variables
+    let hitgirl = false;
+    let hitgirlonce = false;
+    let teleporttotown = false;
+    let once = 1
+    let dissapeargirl = false;
+    let nevergirl = false
+    moveright = true
+    //Stat variables
+
+function setup() {
+    
+    createCanvas(w,h);
+    goback = sessionStorage.getItem("gobackkey")
+    right = loadImage('right.png')
+    left = loadImage("left.png")
+    up = loadImage("up.png")
+    down = loadImage("down.png")
+
+    
+}
+
+
+function draw() {
+    clear()
+
+    if (goback == "true"){
+        moveX = 1700
+        moveY = 256
+        goback = "false"
+        gototown = true
+        dissapeargirl = true
+        
+    }
+    console.log(moveX,",",moveY)
+    //Girl character
+    noStroke()
+    fill(color(0,0,0,0.2))
+    rect(1830,96,100,400)
+    fill(color("blue"))
+    if (dissapeargirl === true){
+        fill(color(0,0,0,0.2))
+        nevergirl = true
+    }
+    rect(1440, 381,100,100)
+    //Main character
+    if (moveup === true){
+        image(up,moveX,moveY,150,150)
+        movedown = false
+        moveleft = false
+
+    }
+    else if(movedown === true){
+        image(down,moveX,moveY,150,100)
+        moveup = false
+        moveleft = false
+    }
+    else if(moveleft === true){
+        image(left,moveX,moveY,110,130)
+        moveup = false
+        movedown = false
+    }
+    else if (moveright === true){
+        image(right,moveX,moveY,150,170)
+    }
+    fill(color(0,0,0,0.2))
+    rect(moveX,moveY,100,100)
+    
+    if (keyIsDown(65)) {
+        if ((moveX > 0)&&(stuck === false)){
+            moveX = moveX -5;
+            
+            moveleft = true
+            moveup = false
+            movedown = false
+            
+
+        }
+        
+    }
+    if (keyIsDown(68)){
+        if ((moveX < 1820)&&(stuck === false)){
+            moveX = moveX +5;
+            moveright = true
+            moveleft = false
+            moveup = false
+            movedown = false
+            
+        }
+        
+
+    }
+    if (keyIsDown(83)){
+        if ((moveY < 828)&&(stuck === false)){
+            moveY = moveY +5;
+            movedown = true
+            moveup = false
+            moveleft = false
+            
+
+        }
+
+    }
+    if (keyIsDown(87)){
+        if ((moveY > 0)&&(stuck === false)){
+        
+            moveY = moveY -5;
+            moveup = true
+            movedown = false
+            moveleft = false
+         
+        }
+
+    }
+    teleporttotown = collideRectRect(moveX,moveY,100,100,1820,96,100,400)
+    if ((teleporttotown === true)&&(gototown === true)) {
+        if (once == 1){
+            window.location.href = "town.html"
+            once +=1
+            
+
+        }
+        
+        
+    }
+
+    hitgirl = collideRectRect(moveX,moveY,100,100,1440, 381,100,100)
+    if ((hitgirl === true)&&(hitgirlonce === false)&&(nevergirl=== false)){
+        document.getElementById("image_text").style.visibility = "visible"
+        document.getElementById("common_text").style.visibility = "visible"
+        document.getElementById("common_text").innerHTML = "This is the first line <br> This is the second line <br> Press the key 'e' to continue"
+        stuck = true
+        onkeypress = function(){
+            countcheck += 1
+        
+            
+        }
+        if (countcheck==0){
+                document.getElementById("common_text").innerHTML = "This wont work"
+                countcheck = 1
+            
+            }
+        else if (countcheck == 1){
+                document.getElementById("common_text").innerHTML = "Blah blah <br> More useless stuff"
+            }
+        else if (countcheck == 2){
+                document.getElementById("common_text").innerHTML = "Just amazing, go to town<br> thank you"
+            }
+        else if (countcheck == 3){
+                document.getElementById("image_text").style.visibility = "hidden"
+                document.getElementById("common_text").style.visibility = "hidden"
+                stuck = false
+                hitgirlonce = true
+                countcheck = -1
+                gototown = true
+            }
+        
+           
+    }
+    }
+    
+
+
+
+
+</script>
+  
+</body>
+</html>
