@@ -22,6 +22,19 @@
     background-repeat: no-repeat;
 
 }
+#body3{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-image: url(grass.png);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: 0.02vh;
+    background-repeat: no-repeat;
+
+}
 #box_text{
     position: absolute;
     height: 20vh;
@@ -53,7 +66,83 @@
     
 
 }
+#display_text{
+    position:absolute;
+    bottom: 10%;
+    right: 40%;
+    font-size: 2vw;
+}
+#name{
 
+    position:absolute;
+    bottom: 18%;
+    right: 8.5%;
+    font-size: 2vw;
+
+}
+#health{
+    position:absolute;
+    bottom: 12%;
+    right: 6.5%;
+    font-size: 2vw;
+}
+#stamina{
+
+    position:absolute;
+    bottom: 5%;
+    right: 6%;
+    font-size: 2vw;
+
+}
+#enemyhealth{
+    font-size: 2vw;
+    position:absolute;
+    right: 78%;
+    bottom: 5%;
+
+
+}
+#enemyname{
+    font-size: 2vw;
+    position: absolute;
+    bottom: 12%;
+    right: 82%;
+}
+#slash{
+    font-size: 2vw;
+    position: absolute;
+    bottom: 12%;
+    right: 60%;
+
+}
+#stab{
+    font-size: 2vw;
+    position: absolute;
+    bottom: 5%;
+    right: 60.5%;
+
+}
+#block{
+    font-size: 2vw;
+    position: absolute;
+    bottom: 12%;
+    right: 50%;
+
+}
+#dodge{
+    font-size: 2vw;
+    position: absolute;
+    bottom: 5%;
+    right: 49%;
+
+}
+#rest{
+    font-size: 2vw;
+    position: absolute;
+    bottom: 8.5%;
+    right: 40%;
+
+}
 
 
 
