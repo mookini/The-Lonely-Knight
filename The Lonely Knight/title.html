@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.min.js" 
+    integrity="sha512-WJXVjqeINVpi5XXJ2jn0BSCfp0y80IKrYh731gLRnkAS9TKc5KNt/OfLtu+fCueqdWniouJ1ubM+VI/hbo7POQ==" 
+    crossorigin="anonymous" 
+    referrerpolicy="no-referrer">
+    </script>
+    <!-- Includes the p5.collide2D addon library -->
+    <script defer src="https://unpkg.com/p5.collide2d"></script>
+    <!-- refrence external javasript -->
+    <script src="script.js"></script>
+    <link href="style.css" rel="stylesheet" type="text/css" />  
+    <link href="https://fonts.cdnfonts.com/css/common-pixel" rel="stylesheet">
+    <style>
+           @import url('https://fonts.cdnfonts.com/css/common-pixel');
+   </style> 
+   <style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Climate+Crisis&family=Diplomata+SC&family=Rubik+Iso&display=swap');
+</style>
+
+</head>
+<body id="title_body">
+    <h1 id="main_title1">The Lonely Knight</h1>
+    <h1 id="main_title2">Of Veleteria</h1>
+
+    <div id="wrap">
+        <button onclick="gotogame()" id="gotogame">Play</button>
+    </div>
+    
+    
+
+    <script>
+        let menuSong;
+         function preload() {
+             soundFormats('mp3', 'ogg');
+             menuSong = loadSound("title.mp3")
+             menuSong.setVolume(0.1)
+         }
+ 
+         function menuMusic() {
+             menuSong.play()
+             menuSong.loop()
+             
+         }
+ 
+         function setup() {
+             userStartAudio()
+             menuMusic()
+             }
+         
+     </script>
+    
+</body>
+</html>

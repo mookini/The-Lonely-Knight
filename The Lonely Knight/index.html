@@ -22,10 +22,29 @@
 
     <div id = "image_text"></div>
     <h1 id = "display_text"></h1>
-    
+    <div id="image_pic"></div>
     <div id="box_text"><span id = "common_text">This is a common text. <br>Just a waste of space</span></div>
+    <div id="stat_menu">
+        <span id="healthstat">Health: </span>
+        <span id="gold">Gold: </span>
+        <span id="xp">Experience:</span>
+    </div>
+    
 
 <script>
+    //----TO DO LIST-----
+    //BATTLE!!
+    //*Add experience points and gold
+    //*Make player obtain gold and XP when winning a battle
+    //*Animate characters
+    //INDEX!!
+    //*make the girl a image
+    //*Create a better map
+    //*Add attack part of girl function
+    //*Add screen for stats - health, stamina, gold, xp
+  
+
+
     
     let w = window.innerWidth;
     let h = window.innerHeight;
@@ -39,22 +58,41 @@
     let gototown = false
     ///For multiple text boxes
     let countcheck = -1;
+    let countcheck1 = -1;
     let isPressed = false;
     ///Hit variables
+    let cryinggirl = false;
+    let hitcryonce;
     let hitgirl = false;
     let hitgirlonce = false;
     let teleporttotown = false;
     let once = 1
     let once1 = 1
     let once3 = 1
+    let once4 = 1
     let dissapeargirl = false;
     let nevergirl = false
     let againt;
     let againtt;
-    let testing;
+    let battle1;
+    let battle2;
 
     moveright = true
-    //Stat variables
+
+    telebat = sessionStorage.getItem("telebat")
+    
+    if(telebat=="true"){
+        telebat = false
+        moveX = sessionStorage.getItem("moveX")
+        moveX = parseInt(moveX)
+        moveY = sessionStorage.getItem("moveY")
+        moveY = parseInt(moveY)
+        once4 = sessionStorage.getItem("once4")
+        once4 = parseInt(once4)
+        health = sessionStorage.getItem("health")
+        health = parsent(health)
+
+    }
 
 function setup() {
     
@@ -72,20 +110,12 @@ function setup() {
 
 function draw() {
     clear()
-    telebat = sessionStorage.getItem("telebat")
-    
-    if((telebat === true)&&(once3==1)){
-        console.log(telebat)
-        once3+=1
-        moveX = sessionStorage.getItem("moveX")
-        moveY = sessionStorage.getItem("moveY")
 
-    }
-
-
-    //makes sure that the health is 100
+    console.log(health)
+    //makes sure that the health starts at 100
     if ((moveX == w/24)&&(moveY == h/1.2)){
         health = 100
+        hitcryonce = false
     }
     if (goback == "true"){
         moveX = 1700
@@ -95,6 +125,36 @@ function draw() {
         dissapeargirl = true
         
     }
+    //Begining text
+    noStroke()
+    fill(color(0,0,0,0.2))
+    rect(500,0,100,1100)
+    cryinggirl = collideRectRect(moveX,moveY,200,200,500,0,100,1100)
+    if ((cryinggirl === true)&&(hitcryonce ===false)){
+            document.getElementById("display_text").innerHTML = ""
+            document.getElementById("image_text").style.visibility = "visible"
+            document.getElementById("common_text").style.visibility = "visible"
+            document.getElementById("common_text").innerHTML = "This is the first line <br> This is the second line <br> Press the key 'e' to continue"
+            document.getElementById("image_pic").style.visibility = "visible"
+            document.getElementById("image_pic").style.backgroundImage = "url('head.png')"
+            stuck = true
+
+            setTimeout(function(){
+
+                onkeypress = function(){
+                    document.getElementById("image_text").style.visibility = "hidden"
+                    document.getElementById("common_text").style.visibility = "hidden"
+                    document.getElementById("image_pic").style.visibility = "hidden"
+
+                    stuck = false
+                    hitcryonce = true
+                    
+                }
+
+            }, 3000); 
+
+    }
+
 
     //Girl character
     noStroke()
@@ -229,22 +289,46 @@ function draw() {
     else {
         document.getElementById("display_text").innerHTML = ""
     }
-    fill(color("pink"))
-    rect(w/2,h/2,100,100)
-    testing = collideRectRect(moveX,moveY,200,200,w/2,h/2,100,100)
+    fill(color(0,0,0,0.2))
+    rect(w/2,0,100,1100)
+    battle1 = collideRectRect(moveX,moveY,200,200,w/2,0,100,1100)
     //intiates the battle
-    if (testing === true){
-        if (once1 == 1){
-            once1 = 2
-            place = "index.html"
-            telebat = true
-            sessionStorage.setItem("moveX",moveX)
-            sessionStorage.setItem("moveY",moveY)
-            sessionStorage.setItem("telebat",telebat)
-            sessionStorage.setItem("place",place)
+    if ((battle1 === true)&&(once4 ==1)){
+
+        document.getElementById("display_text").innerHTML = ""
+        document.getElementById("image_text").style.visibility = "visible"
+        document.getElementById("common_text").style.visibility = "visible"
+        document.getElementById("common_text").innerHTML = "This is the first line <br> This is the second line <br> Press the key 'e' to continue"
+        document.getElementById("image_pic").style.visibility = "visible"
+        document.getElementById("image_pic").style.backgroundImage = "url('head.png')"
+        stuck = true
+
+        setTimeout(function(){
+
+        onkeypress = function(){
+            document.getElementById("image_text").style.visibility = "hidden"
+            document.getElementById("common_text").style.visibility = "hidden"
+            document.getElementById("image_pic").style.visibility = "hidden"
+            stuck = false
+
+            once4 = 2
+            if (once1 == 1){
+                once1 = 2
+                console.log(moveX)
+                place = "index.html"
+                telebat = true
+                sessionStorage.setItem("once4",once4)
+                sessionStorage.setItem("moveX",moveX)
+                sessionStorage.setItem("moveY",moveY)
+                sessionStorage.setItem("telebat",telebat)
+                sessionStorage.setItem("place",place)
+                sessionStorage.setItem("health",health)
+                ranattack()
+            }
             
-            ranattack()
         }
+
+        }, 3000); 
     }
     }
     //Test for battle

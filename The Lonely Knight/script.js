@@ -23,8 +23,17 @@ let enemyattack;
 //tele
 let place;
 let telebat;
+//
+let gold;
+let xp;
+/////////
+
 function ranattack(){
     sessionStorage.setItem("health",health)
     window.location.href = "ranenemy.html"
     
+}
+
+function gotogame() {
+    location.href = "index.html";
 }

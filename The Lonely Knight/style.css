@@ -38,7 +38,7 @@
 #box_text{
     position: absolute;
     height: 20vh;
-    width: 30vw;
+    width: 22vw;
     right: 67.6vw;
     overflow-wrap: break-word;
 }
@@ -65,6 +65,23 @@
     
     
 
+
+}
+#image_pic{
+    position:absolute;
+    border:thick solid black;
+    width: 7.5vw;
+    height: 16vh;
+    right: 90%;
+    bottom: 79%;
+    visibility: hidden;
+    overflow: hidden;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-x: 60%;
 }
 #display_text{
     position:absolute;
@@ -78,13 +95,14 @@
     bottom: 18%;
     right: 8.5%;
     font-size: 2vw;
-
+    color: whitesmoke;
 }
 #health{
     position:absolute;
     bottom: 12%;
     right: 6.5%;
     font-size: 2vw;
+    color: whitesmoke;
 }
 #stamina{
 
@@ -92,14 +110,14 @@
     bottom: 5%;
     right: 6%;
     font-size: 2vw;
-
+    color: whitesmoke;
 }
 #enemyhealth{
     font-size: 2vw;
     position:absolute;
     right: 78%;
     bottom: 5%;
-
+    color: whitesmoke;
 
 }
 #enemyname{
@@ -107,12 +125,14 @@
     position: absolute;
     bottom: 12%;
     right: 82%;
+    color: whitesmoke;
 }
 #slash{
     font-size: 2vw;
     position: absolute;
     bottom: 12%;
     right: 60%;
+    color: whitesmoke;
 
 }
 #stab{
@@ -120,6 +140,7 @@
     position: absolute;
     bottom: 5%;
     right: 60.5%;
+    color: whitesmoke;
 
 }
 #block{
@@ -127,6 +148,7 @@
     position: absolute;
     bottom: 12%;
     right: 50%;
+    color: whitesmoke;
 
 }
 #dodge{
@@ -134,6 +156,7 @@
     position: absolute;
     bottom: 5%;
     right: 49%;
+    color: whitesmoke;
 
 }
 #rest{
@@ -141,10 +164,177 @@
     position: absolute;
     bottom: 8.5%;
     right: 40%;
+    color: whitesmoke;
+}
+#black1{
+    background: black;
+    border-color: blue;
+    border-style: groove;
+    position:absolute;
+    width: 25vw;
+    height: 25vh;
+    bottom:0%;
 
 }
+#black2{
+
+    background: black;
+    border-color: blue;
+    border-style: groove;
+    position:absolute;
+    width: 50vw;
+    height: 25vh;
+    bottom:0%;
+    right: 25%
+
+}
+#black3{
+
+    background: black;
+    border-color: blue;
+    border-style: groove;
+    position:absolute;
+    width: 25vw;
+    height: 25vh;
+    bottom:0%;
+    right: 0%;
+
+}
+#main_title1{
+    font-size: 6vw;
+    font-family: 'Rubik Iso', cursive;
+    position: absolute;
+    left: 20%;
+    bottom: 75%;
+    color: white;
+    opacity: 1;
+}
+
+#main_title2{
+    font-size: 6vw;
+    font-family: 'Rubik Iso', cursive;
+    position: absolute;
+    left: 30%;
+    bottom: 62%;
+    color: white;
+    opacity: 1;
+}
+#producer{
+    font-size: 2vw;
+    position: absolute;
+    left: 40%;
+    bottom: 2%;
+    font-family: 'Climate Crisis', cursive;
+    color: white;
+    opacity: 1;
+    
+}
+#main_producer{
+    font-size: 2.3vw;
+    position: absolute;
+    font-family: 'Climate Crisis', cursive;
+    left: 33%;
+    bottom: -4%;
+    color: white;
+    font-style: italic;
+    opacity: 1;
+    
+}
+#title_body{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-image: url(title.png);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    
+    background-repeat: no-repeat;
+    opacity: 1;
+
+}
+#cover1{
+    background-color: black;
+    opacity:0.5;
+    position:absolute;
+    width: 20vw;
+    height:2.5vw;
+    left: 39.5%;
+    bottom: 6.5%;
+}
+#cover2{
+
+    background-color: black;
+    opacity:0.5;
+    position:absolute;
+    width: 38vw;
+    height: 3.2vw;
+    left: 31.5%;
+    bottom: 0%;
+
+}
+#gotogame{
+
+  height:  17vh;
+  width: 20vw;
+  background-color: green;
+  opacity: 0.97;
+  font-size: 6vw;
+  position: absolute;
+  bottom: 30%;
 
 
+  font-weight: 500;
+  color: white;
+  
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
 
+#gotogame:hover{
+    transform: scale(1.2,1.2);
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+    background-color: lightseagreen;
+    box-shadow: 0px 55px 40px lightgray;
+    color: black;
+    transform: translateY(-7px);
+  }
+
+#wrap {
+
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+#stat_menu{
+    background-color: black;
+    border: thick solid #0000FF;
+    position: absolute;
+    bottom: 0%;
+    right: 25%;
+    width: 50vw;
+    height: 10vh;
+    color: white;
+    font-size: 2.5vw;
+}
+#healthstat{
+    
+
+}
+#xp{
+
+}
+#gold{
+    position: relative;
+    right: 10%;
+}
 /*All animations*/
 

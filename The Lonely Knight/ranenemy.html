@@ -17,6 +17,9 @@
    </style>
 </head>
 <body id="body3">
+    <div id="black1"></div>
+    <div id="black2"></div>
+    <div id="black3"></div>
     <div id="h&s">
         <span id = "name">Knight</span>
         <span id="health"></span>
@@ -45,50 +48,92 @@
         let dodge = false;
         let rest = false;
         let done;
+        let outofbreath = false;
         let maxhealth;
+        let maxstamina;
         stamina = 100
         health = sessionStorage.getItem("health")
         health = parseInt(health)
+
+        let moveX = sessionStorage.getItem("moveX")
+        let moveY = sessionStorage.getItem("moveY")
+        telebat = sessionStorage.getItem("telebat")
+
+        console.log(moveX)
+        console.log(telebat)
+      
         //Choosing enemy
         let guess = Math.floor(Math.random()*2)+1
         if ((goblin === true)||(guess == 1)){
             enemyhealth = 80
             goblin = true
+            mushroom = false
             document.getElementById("enemyname").innerHTML = "Goblin"
             document.getElementById("enemyname").style.right = "84%"
         }
         else if ((mushroom == true)||(guess == 2)){
             enemyhealth = 110
             mushroom = true
+            goblin = false
             document.getElementById("enemyname").innerHTML = "Mushroom"
         }
 
         function setup() {
             createCanvas(w,h); 
+            left = loadImage("left.png")
+            mushroomi = loadImage("Mushroom_still.png")
+            goblini = loadImage("Goblin_still.png")
         }
         function draw(){
-            
             clear()
+            console.log(health)
+            //Putting the characters
+            image(left,1300,200,253,300)
+            
+            //MAX STATS WILL GO UP WHEN BETTER EQUIPMENT IS BOUGHT
+            maxstamina = 100
             maxhealth = 100
             //Setting maxhealth, will hcnage when I get better equipment
             if (maxhealth<health){
                 health = maxhealth
             }
+            if (maxstamina<stamina){
+                stamina = maxstamina
+            }
             //Health and Stamina
             document.getElementById("stamina").innerHTML = "Stamina: "+ stamina
             document.getElementById("health").innerHTML = "Health: " + health
+            //Stamina checker
+            if (stamina<=0){
+                stamina = 0
+            }
             //Enemy variant
             document.getElementById("enemyhealth").innerHTML = "Enemy Health: "+enemyhealth
             //Enemy choosing power of attack
-            if (mushroom = true){
+            if (mushroom === true){
                 enemyattack = Math.floor(Math.random()*6)+4
+                image(mushroomi,300,-100,653,800)
             }
-            else if (goblin = true){
+            else if (goblin === true){
                 enemyattack = Math.floor(Math.random()*4)+3
+                image(goblini,300,70,453,500)
+
+            }
+            if (health <0){
+                health = 0
+            }
+            if(enemyhealth <0){
+                enemyhealth = 0
             }
             //The ending function. CAN DECIDE WHAT TO DO IF MY PLAYER OR THE ENEMY DIES
             if ((health <= 0)||(enemyhealth <= 0)) {
+
                 if(once2 == 1){
+
+                    sessionStorage.setItem("moveX",moveX)
+                    sessionStorage.setItem("moveY",moveY)
+                    sessionStorage.setItem("telebat",telebat)
+                    sessionStorage.setItem("health",health)
                     place = sessionStorage.getItem("place")
                     window.location.href = place
                     once2 = 2
@@ -177,24 +222,71 @@
             }
             if ((keyCode === 13)&&(done === false)){
                 if(slash === true){
-                    enemyhealth -= Math.floor(Math.random()*6)+4
+                    
+                    if (stamina<=11){
+                        outofbreath = true
+                    }
+                    else{
+                        stamina -= 12
+
+                    }
+                    if(outofbreath === false){
+
+                        enemyhealth -= Math.floor(Math.random()*6)+4
+
+                    }
                     enemyblunder()
                     
 
                 }
                 else if(stab === true){
-                    enemyhealth -= Math.floor(Math.random()*8)+6
+                    
+                    if (stamina<=7){
+                        outofbreath = true
+                    }
+                    else{
+                        stamina -= 8
+
+                    }
+                    if (outofbreath === false){
+                        enemyhealth -= Math.floor(Math.random()*8)+6
+                    }
                     //Only attacks individual enemy. WHen their is multiple enemies I must be able to choose which enemy I must attack
                     enemyblunder()
 
                 }
                 else if(block === true){
-                    block = true
+                    if (stamina<=4){
+                        outofbreath = true
+                    }
+                    else{
+                        stamina -= 5
+
+                    }
+                    if (outofbreath === false){
+                        block = true
+                    }
+                    else{
+                        block = false
+                    }
                     enemyblunder()
 
                 }
                 else if(dodge === true){
-                    let rani = Math.floor(Math.random()*2)+1
+                    let rani;
+                    if (stamina<=6){
+                        outofbreath = true
+                    }
+                    else{
+                        stamina -= 7
+
+                    }
+                    if (outofbreath === false){
+                        rani = Math.floor(Math.random()*2)+1
+                    }
+                    else{
+                        rani = 2
+                    }
                     if (rani == 1){
                         //nothing happens and dodges fully
                         document.getElementById("slash").innerHTML = "1:Slash"
@@ -213,6 +305,8 @@
                 }
                 else if(rest === true){
                     health += Math.floor(Math.random()*8)+2
+                    stamina += Math.floor(Math.random()*15)+10
+                    outofbreath = false
                     enemyblunder()
 
                 }
